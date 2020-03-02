@@ -15,7 +15,7 @@ def hello_world():
                     return "username or password is invalid"
             except :
                 
-                return "<h1>credential type error</h1>"
+                return "<h1>credential type error  </h1>" + username + " " + password
             
     
             returned_output=subprocess.check_output(['scrapy', 'crawl', spider_name, "-a", f"user={username}", "-a", f"pasw={password}", "-s", "LOG_ENABLED=False"])
