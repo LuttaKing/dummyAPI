@@ -10,8 +10,13 @@ def hello_world():
 
             username = request.form.get('username')
             password=request.form.get('password')
-            if len(username) < 14 or len(password) < 8:
-                return "username or password is invalid"
+            try:
+                if len(username) < 14 or len(password) < 8:
+                    return "username or password is invalid"
+            except :
+                
+                return "<h1>credential type error</h1>"
+            
     
             returned_output=subprocess.check_output(['scrapy', 'crawl', spider_name, "-a", f"user={username}", "-a", f"pasw={password}", "-s", "LOG_ENABLED=False"])
             try:
