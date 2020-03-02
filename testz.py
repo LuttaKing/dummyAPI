@@ -1,5 +1,5 @@
 # server.py
-import subprocess
+import subprocess,json
 from flask import Flask,request
 app = Flask(__name__)
 
@@ -15,18 +15,18 @@ def hello_world():
                     return "username or password is invalid"
             except :
                 
-                return "<h1>credential type error  </h1>" + username + " " + password
+                return "<h1>credential type error  </h1>"
             
     
             returned_output=subprocess.check_output(['scrapy', 'crawl', spider_name, "-a", f"user={username}", "-a", f"pasw={password}", "-s", "LOG_ENABLED=False"])
             try:
                 
                 print(type(returned_output.decode('utf-8')))
-                return returned_output.decode('utf-8').strip()
+                return json.loads(returned_output.decode('utf-8').strip())
             except subprocess.CalledProcessError as cpe:
             
                 print(type(cpe.output))
-                return cpe.output.strip()
+                return json.loads(cpe.output.strip())
            
         return "<h1>Nothing to see here,(post server,username,password)</h1>"
     
