@@ -22,11 +22,11 @@ def hello_world():
             try:
                 
                 print(type(returned_output.decode('utf-8')))
-                return json.loads(returned_output.decode('utf-8').strip())
+                return json.dumps(returned_output.decode('utf-8').strip())
             except subprocess.CalledProcessError as cpe:
             
                 print(type(cpe.output))
-                return json.loads(cpe.output.strip())
+                return json.dumps(cpe.output.strip())
            
         return "<h1>Nothing to see here,(post server,username,password)</h1>"
     
