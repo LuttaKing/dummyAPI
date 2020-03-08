@@ -2,15 +2,15 @@ import scrapy
 import unicodedata
 from scrapy.http import FormRequest
 
-detaillist = ['DETAIL']
+detaillist = []
 unitlist = []
 timetablelist = []
 
-myUnitsList = ["REG_UNITS"]
-cleanTimtable=["TIMETABLE"]
+myUnitsList = []
+cleanTimtable=[]
 
 roughresultlist=[]
-cleanresultlist=["RESULTS"]
+cleanresultlist=[]
 
 finalList=[]
 
@@ -166,5 +166,10 @@ class QuotesSpider(scrapy.Spider):
 
         finalList.extend([detaillist,myUnitsList,cleanTimtable,cleanresultlist])
 
-        print(finalList)
+        idlist=['DETAILS','REGISTERED_UNITS','ONLINE_TIMETABLE','EXAM_RESULTS']
+
+        zipbObj = dict(zip(idlist, finalList))
+
+
+        print(zipbObj)
 
