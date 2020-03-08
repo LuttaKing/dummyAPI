@@ -1,6 +1,6 @@
 # server.py
-import subprocess,json
-from flask import Flask,request
+import subprocess
+from flask import Flask,request,jsonify
 app = Flask(__name__)
 
 
@@ -24,14 +24,14 @@ def hello_world():
                 
               
                 if len(returned_output.decode('utf-8').strip()) > 1:
-                    return json.dumps(returned_output.decode('utf-8').strip())
+                    return jsonify(returned_output.decode('utf-8').strip())
 
                 else:
                     return "<h1>Invalid credentials</h1>"
             except subprocess.CalledProcessError as cpe:
 
                 if len(cpe.output.strip()) > 1:
-                    return json.dumps(cpe.output.strip())
+                    return jsonify(cpe.output.strip())
 
                 else:
                     return "<h1>Invalid credentials CPE2</h1>"
