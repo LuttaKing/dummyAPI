@@ -1,6 +1,6 @@
 # server.py
 import subprocess
-from flask import Flask,request,jsonify,json
+from flask import Flask,request
 app = Flask(__name__)
 
 
@@ -22,31 +22,19 @@ def hello_world():
             returned_output=subprocess.check_output(['scrapy', 'crawl', spider_name, "-a", f"user={username}", "-a", f"pasw={password}", "-s", "LOG_ENABLED=False"])
             try:
                 
-                    response = app.response_class(
-                            response=json.dumps(returned_output.decode('utf-8').strip()),
-                            status=200,
-                            mimetype='application/json'
-                                )
-                    return response
-                        # if len(returned_output.decode('utf-8').strip()) > 1:
-                #     return jsonify(returned_output.decode('utf-8').strip())
+                if len(returned_output.decode('utf-8').strip()) > 1:
+                    return returned_output.decode('utf-8').strip()
 
-                # else:
-                #     return "<h1>Invalid credentials</h1>"
+                else:
+                    return "<h1>Invalid credentials</h1>"
             except subprocess.CalledProcessError as cpe:
 
-                    response = app.response_class(
-                                    response=json.dumps(cpe.output.strip()),
-                                    status=200,
-                                    mimetype='application/json'
-                                        )
-                    return response
+                  
+                if len(cpe.output.strip()) > 1:
+                    return cpe.output.strip()
 
-                # if len(cpe.output.strip()) > 1:
-                #     return jsonify(cpe.output.strip())
-
-                # else:
-                #     return "<h1>Invalid credentials CPE2</h1>"
+                else:
+                    return "<h1>Invalid credentials CPE2</h1>"
               
                 # #  cpe.output.strip()
            

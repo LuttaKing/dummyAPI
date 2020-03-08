@@ -166,10 +166,7 @@ class QuotesSpider(scrapy.Spider):
 
         finalList.extend([detaillist,myUnitsList,cleanTimtable,cleanresultlist])
 
-        idlist=['DETAILS','REGISTERED_UNITS','ONLINE_TIMETABLE','EXAM_RESULTS']
+        # idlist=['DETAILS','REGISTERED_UNITS','ONLINE_TIMETABLE','EXAM_RESULTS']
 
-        zipbObj = dict(zip(idlist, finalList))
-
-
-        print(zipbObj)
-
+       
+        print(finalList)
