@@ -12,7 +12,7 @@ def hello_world():
             username = request.form.get('username')
             password=request.form.get('password')
             try:
-                if len(username) < 14 or len(password) < 8:
+                if len(username) < 14 or len(password) < 5:
                     return "username or password is invalid"
             except :
                 
